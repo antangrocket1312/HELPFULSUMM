@@ -36,7 +36,7 @@ venv.bak/
 *.pth.tar
 *.pt
 *.ckpt
-exps/
+models/
 data/copora/index**/
 data/copora/sample/index**/
 AutoGPTQ/

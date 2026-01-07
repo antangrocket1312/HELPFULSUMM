@@ -6,10 +6,10 @@
 
 This repository maintains the code, data, and model checkpoints for the paper *HELPFULSUMM: Personalized Helpful Opinion Summarization via Reinforcement Learning from Review Helpfulness Votes*
 
-## Helpful Personalized Opinion Summarization
-![Helpful_POS](diagram/Helpful_POS_Task.png)
-In this work, we advanced personalized opinion summarization (POS) by leveraging historical user helpfulness
+We advanced personalized opinion summarization (POS) by leveraging historical user helpfulness
 votes on reviews to better model user interests and ground the generation of personalized summary in opinions helpful to the users.
+
+![Helpful_POS](diagram/Helpful_POS_Task.png)
 
 ## The HELPFULSUMM Model
 We proposed HELPFULSUMM, a reinforcement learning-based model that utilizes user historical helpfulness votes to align with user preference in both Knowledge Consistency and Persona Consistency.
@@ -29,6 +29,10 @@ via reinforcement learning of the generated summary output using 2 reward models
 
 All prompts are located under [```/prompts```](/prompts)
 
+### Model Checkpoint
+For ease of reproducibility, we provided the trained model checkpoints of HELPFULSUMM, using [Llama-3.1-8B-Instruct](https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct) as backbone.
+Model checkpoint can be downloaded from this [Google Drive link](https://drive.google.com/file/d/12dZLHgrChs9rHcog8qpr0LntlxicTrmt/view?usp=sharing).
+Please download the file and unzip the ```/models``` directory into the main working directory.
 
 ## The CiaoHelpful Dataset
 We proposed CiaoHelpful, a new dataset specialized for training and evaluation of end-to-end models for helpful personalized opinion summarization.
