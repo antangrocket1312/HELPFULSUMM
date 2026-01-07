@@ -1,0 +1,45 @@
+/checkpoints/*
+/*.zip
+*Exp-Log.ipynb
+*Full.ipynb
+*BACKUP.pkl
+index
+*.zip
+KeyPoint-Analysis/KPG/BLEURT-20/
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+.idea/
+.vscode/
+
+*.pth.tar
+*.pt
+*.ckpt
+exps/
+data/copora/index**/
+data/copora/sample/index**/
+AutoGPTQ/
+/draft.py
+
+BLEURT-20/
