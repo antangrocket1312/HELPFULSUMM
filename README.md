@@ -1,10 +1,10 @@
 <div align="center">
 
-# HELPFULSUMM: Personalized Helpful Opinion Summarization via Reinforcement Learning from Review Helpfulness Votes
+# HELPFULSUMM: Helpful Personalized Opinion Summarization via Reinforcement Learning from Review Helpfulness Votes
 
 </div>
 
-This repository maintains the code, data, and model checkpoints for the paper *HELPFULSUMM: Personalized Helpful Opinion Summarization via Reinforcement Learning from Review Helpfulness Votes*
+This repository maintains the code, data, and model checkpoints for the paper *HELPFULSUMM: Helpful Personalized Opinion Summarization via Reinforcement Learning from Review Helpfulness Votes*
 
 We advanced personalized opinion summarization (POS) by leveraging historical user helpfulness
 votes on reviews to better model user interests and ground the generation of personalized summary in opinions helpful to the users.
