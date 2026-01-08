@@ -61,7 +61,7 @@ data
 │   ├── copora
 │       ├── input_reviews.jsonl
 ├── full
-│   ├── amazon_kp_dataset.jsonl
-│   ├── amazon_kp_dataset.csv
-│   ├── amazon_kp_dataset.pkl
+│   ├── ciaohelpful_dataset.jsonl
+│   ├── ciaohelpful_dataset.csv
+│   ├── ciaohelpful_dataset.pkl
 ```
