@@ -1,12 +1,12 @@
-torchrun --nproc_per_node=1 --master_port=9778 fastchat/train/train_lora_pos.py \
-    --model_name_or_path ./model/Meta-Llama-3.1-8B-Instruct-GPTQ-INT4 \
+torchrun --nproc_per_node=1 --master_port=9778 train/stage_1_sft.py \
+    --model_name_or_path hugging-quants/Meta-Llama-3.1-8B-Instruct-GPTQ-INT4 \
     --lora_r 16 \
     --lora_alpha 32 \
     --lora_dropout 0.05 \
-    --data_path ./personalized_opinion_summarization_data/train_ok_cot_large_v2.pkl \
+    --data_path ./data/train/train.pkl \
     --bf16 True \
     --fp16 False \
-    --output_dir ./personalized_opinion_summarization_llama_gptq_2_epoch_r16_32a_32k_cot_large_5_rev_v2_full \
+    --output_dir ./models/stage_1_helpfulsumm_ft_2 \
     --num_train_epochs 2 \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 1 \
