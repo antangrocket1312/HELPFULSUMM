@@ -103,11 +103,11 @@ CiaoHelpful annotates gold summary of product personalized for a user in 5 stage
 ![CiaoHelpful_Annotation](diagram/CiaoHelpful_Annotation.png)
 
 The dataset can be accessed under the [```data/```](/data) folder, 
-following the [```train/```](/data/train) and [```test/```](/data/test) subdirectories for the train and test set.
+following the [```sft_train/```](/data/sft_train), [```rl_train/```](/data/rl_train) and [```test/```](/data/test) subdirectories for the train and test set.
 Files in each sub-directory:
 ```
 data
-├── train
+├── sft_train
 │   ├── train.jsonl
 │   ├── train.csv
 │   ├── train.pkl

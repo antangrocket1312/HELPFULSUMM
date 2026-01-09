@@ -3,7 +3,7 @@ torchrun --nproc_per_node=1 --master_port=9778 train/stage_1_sft.py \
     --lora_r 16 \
     --lora_alpha 32 \
     --lora_dropout 0.05 \
-    --data_path ./data/train/train.pkl \
+    --data_path ./data/sft_train/train.pkl \
     --bf16 True \
     --fp16 False \
     --output_dir ./models/stage_1_helpfulsumm_ft \
