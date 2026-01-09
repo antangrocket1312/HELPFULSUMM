@@ -71,6 +71,7 @@ To customize the training setting, please access the file [`run_stage_1_sft.sh`]
 - `data_path`: path to training data
 - `model_max_length`: max sequence length for training, increase if GPU memory allows
 
+The trained summarizer is saved under [`models/stage_1_helpfulsumm_ft`](models/stage_1_helpfulsumm_ft)
 
 ### Stage 2: Reinforcement Learning
 We further optimize HelpfulSumm-FT via reinforcement learning of the generated summary output using 2 reward models:
