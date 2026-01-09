@@ -11,6 +11,30 @@ votes on reviews to better model user interests and ground the generation of per
 
 ![Helpful_POS](diagram/Helpful_POS_Task.png)
 
+## Installation
+Our model was tested under the following dependencies
+- python 3 (tested with 3.9)
+- transformers (tested with 4.50.0)
+- trl (tested with 0.8.0)
+
+We recommend installing using conda and GPU for reasonable runtime. The following will install all dependencies, referenced from Atlas:
+```bash
+conda create --name helpfulsumm python=3.9
+conda activate helpfulsumm
+conda install pytorch pytorch-cuda=11.8 -c pytorch -c nvidia
+```
+
+We also need some additional packages to run the code. The list of packages is listed in ```requirements.txt```. On the main directory of the repository, run:
+```bash
+pip install -r requirements.txt
+python -m spacy download en_core_web_sm
+python -m spacy download en_core_web_lg
+cd evaluation/AlignScore
+pip install .
+cd ../bleurt
+pip install .
+```
+
 ## The HELPFULSUMM Model
 We proposed HELPFULSUMM, a reinforcement learning-based model that utilizes user historical helpfulness votes to align with user preference in both Knowledge Consistency and Persona Consistency.
 HELPFULSUMM is trained in two stages following the standard RLHF training paradigm.
