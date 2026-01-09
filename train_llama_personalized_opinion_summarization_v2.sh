@@ -1,0 +1,27 @@
+torchrun --nproc_per_node=1 --master_port=9778 fastchat/train/train_lora_pos.py \
+    --model_name_or_path ./model/Meta-Llama-3.1-8B-Instruct-GPTQ-INT4 \
+    --lora_r 16 \
+    --lora_alpha 32 \
+    --lora_dropout 0.05 \
+    --data_path ./personalized_opinion_summarization_data/train_ok_cot_large_v2.pkl \
+    --bf16 True \
+    --fp16 False \
+    --output_dir ./personalized_opinion_summarization_llama_gptq_2_epoch_r16_32a_32k_cot_large_5_rev_v2_full \
+    --num_train_epochs 2 \
+    --per_device_train_batch_size 1 \
+    --per_device_eval_batch_size 1 \
+    --gradient_accumulation_steps 1 \
+    --save_strategy "epoch" \
+    --learning_rate 2e-6 \
+    --weight_decay 0 \
+    --warmup_ratio 0 \
+    --warmup_steps 0 \
+    --lr_scheduler_type "cosine" \
+    --logging_steps 5 \
+    --model_max_length 32768 \
+    --q_lora False \
+    --gradient_checkpointing True \
+    --report_to "none" \
+    --seed 42 \
+    --optim "paged_adamw_32bit" \
+    --ddp_find_unused_parameters False

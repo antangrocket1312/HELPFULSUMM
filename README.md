@@ -70,14 +70,12 @@ Files in each sub-directory:
 data
 ├── train
 │   ├── train.jsonl
-│   ├── copora
-│       ├── input_reviews.jsonl
-│       ├── gold_comment_clusters.jsonl
-│       ├── gold_retrieved_comments.jsonl
+│   ├── train.csv
+│   ├── train.pkl
 ├── test
 │   ├── test.jsonl
-│   ├── copora
-│       ├── input_reviews.jsonl
+│   ├── test.csv
+│   ├── test.pkl
 ├── full
 │   ├── ciaohelpful_dataset.jsonl
 │   ├── ciaohelpful_dataset.csv
