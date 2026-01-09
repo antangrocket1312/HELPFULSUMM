@@ -115,8 +115,6 @@ data
 │   ├── test.jsonl
 │   ├── test.csv
 │   ├── test.pkl
-├── full
-│   ├── ciaohelpful_dataset.jsonl
-│   ├── ciaohelpful_dataset.csv
-│   ├── ciaohelpful_dataset.pkl
 ```
+
+Full dataset can be downloaded from this [Google Drive link](https://drive.google.com/file/d/1e3JKCbU98bXETWJesevOIgXICxGxYKa9/view?usp=sharing).
