@@ -58,6 +58,20 @@ HELPFULSUMM is trained in two stages following the standard RLHF training paradi
 ### Stage 1: Supervised Finetuning
 We first obtain a base summarizer (**HelpfulSumm-FT**) by instruction-finetuning an LLM to equip it with the capability to perform the POS task in end-to-end manner.
 
+To train HelpfulSumm-FT with `Llama-3.1-8B-Instruct` as backbone default hyperparameters and settings mentioned in the paper, run the following command:
+
+```
+sh run_stage_1_sft.sh
+```
+
+*Note: Due to computational limitation, for runtime feasibility, we opt to use [quantized version](https://huggingface.co/hugging-quants/Meta-Llama-3.1-8B-Instruct-GPTQ-INT4) (4 bit, group size 128) of `Llama-3.1-8B-Instruct`. Training a 4-bit quantized `Llama-3.1-8B-Instruct` requires 24GB GPU memory (a RTX 4090 GPU)*
+
+To customize the training setting, please access the file [`run_stage_1_sft.sh`](run_stage_1_sft.sh) and adjust the following arguments:
+- `model_name_or_path`: the backbone LLM of HELPFULSUMM instruction fine-tuned for the POS task
+- `data_path`: path to training data
+- `model_max_length`: max sequence length for training, increase if GPU memory allows
+
+
 ### Stage 2: Reinforcement Learning
 We further optimize HelpfulSumm-FT via reinforcement learning of the generated summary output using 2 reward models:
 - **Helpful Opinion Reward:** Use a fine-tuned DeBERTa model to estimate user helpfulness scores (0-5), i.e., averaged votes, on opinions captured in the summary based on historical user-voted reviews 
@@ -70,7 +84,7 @@ All prompts are located under [```/prompts```](/prompts)
 [//]: # (#### Fine-tuning a DeBERTa model for Helpful Opinion Reward)
 
 ### Model Checkpoint
-For ease of reproducibility, we provided the trained model checkpoints of HELPFULSUMM, using quantized version (4 bit, group size 128) of Llama-3.1-8B-Instruct (due to computational limitation for training).  
+For ease of reproducibility, we provided the trained model checkpoints of HELPFULSUMM, using quantized version (4 bit, group size 128) of `Llama-3.1-8B-Instruct` (due to computational limitation for training).  
 Model checkpoint can be downloaded from this [Google Drive link](https://drive.google.com/file/d/12dZLHgrChs9rHcog8qpr0LntlxicTrmt/view?usp=sharing).
 Please download the file and unzip the ```/models``` directory into the main working directory.
 
