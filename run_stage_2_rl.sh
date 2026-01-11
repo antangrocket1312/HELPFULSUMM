@@ -1,0 +1,17 @@
+torchrun --nproc_per_node=1 --master_port=9778 train/stage_2_rl.py \
+    --policy_base_model hugging-quants/Meta-Llama-3.1-8B-Instruct-GPTQ-INT4 \
+    --policy_model_path ./models/stage_1_helpfulsumm_ft/checkpoint-800 \
+    --helpful_opinion_reward_base_model microsoft/deberta-v2-xlarge \
+    --helpful_opinion_reward_model_path ./models/stage_2_helpful_opinion_reward_deberta_ft/model_3_epoch_good.pth \
+    --persona_alignment_reward_model gpt-3.5-turbo \
+    --lora_r 64 \
+    --lora_alpha 16 \
+    --lora_dropout 0.05 \
+    --data_path ./data/rl_train/train.pkl \
+    --output_dir ./models/stage_2_helpfulsumm_rl_2 \
+    --openai_api_key <YOUR-API-KEY> \
+    --batch_size 1 \
+    --num_epochs 1 \
+    --learning_rate 2e-7 \
+    --save_steps 200 \
+    --seed 201
