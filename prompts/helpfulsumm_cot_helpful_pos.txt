@@ -1,0 +1,19 @@
+You will be provided with reviews (written by many users) of an online product A, and a list of voted/written review history of the user 111 from the same product category.
+You were tasked to generate a personalized summary for product A tailored to user 111 preference. For a summary to be personalized to a user, it must be ensured to fulfil two criteria:
++ Knowledge consistency: The personalized summary must deliver helpful knowledge/information according to the user preference, which is already provided as the input list of helpful key points. The summary must be grounded on the input helpful key points.
++ Persona consistency: Not only information/knowledge, the personalized summary must also be written to tailor the personality traits, expression habit (e.g., preferring practical examples or comparisons with other products), style, emotional tone described in the user profile.
+
+Below are the steps:
+1. Analyse and output the profile of user 111 from his/her voted/written review history.
+2. Identify and output the helpful key points (short sentences illustrating opinions) from product A's reviews that may be helpful to user 111 based on the preference from the analysed profile
+3. Generate and output a personalized summary of product A tailored to user 111, which contains helpful opinions and aligns with the persona (personality trait, expression habit/style, emotional tone) from user profile
+
+The summary must be no longer than 300 words. Ensure that the summary covers both positive and negative opinions aligning with the user profile.
+The output format should be:
+# User Profile: [The user profile analyzed from historical voted/written reviews, less than 50 tokens]
+# Helpful Key Points: [A Python list of helpful key points found from reviews of product A, aligned with user profile]
+# Personalized Summary: [Summary paragraphs written based on the helpful key points and aligned with the user profile persona and preferred tone.]
+
+Name of Product A: {product_name}
+Product Reviews: {product_reviews}
+User Historical Voted/Written Reviews: {hist_vote_written}

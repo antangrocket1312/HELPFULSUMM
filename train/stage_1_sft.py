@@ -19,7 +19,7 @@ from dataclasses import dataclass, field
 import pathlib
 import typing
 import os
-
+import re
 from deepspeed import zero
 from deepspeed.runtime.zero.partition_parameters import ZeroParamStatus
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
@@ -41,6 +41,10 @@ import pandas as pd
 from datasets import Dataset, load_dataset
 from trl import SFTTrainer
 from auto_gptq import exllama_set_max_input_length
+
+import sys
+sys.path.insert(1, os.path.join(sys.path[0], '../'))
+from utils.prompting import *
 
 @dataclass
 class TrainingArguments(transformers.TrainingArguments):
@@ -103,6 +107,48 @@ def get_peft_state_maybe_zero_3(named_params, bias):
     to_return = {k: maybe_zero_3(v) for k, v in to_return.items()}
     return to_return
 
+
+def format_profile(user_profiles):
+    profile_lines = re.findall(r"\n[^\:]+:([^\n]+)", user_profiles)
+    profile_lines = [line.strip("[*\n \.]") for line in profile_lines]
+    profile_lines = [line for line in profile_lines if len(line) > 1]
+    return ". ".join(profile_lines) + "."
+
+
+def make_format_chat(tokenizer, base_prompt, output_template):
+    def format_chat(row):
+        texts = []
+        for i in range(len(row['product_name'])):
+            # Use the model’s native chat template for best results
+            product_name = row['product_name'][i]
+            import random
+            random.seed(42)
+            hist_vote_written = random.sample(row['filtered_hist_vote_written'][i], min(5, len(row['filtered_hist_vote_written'][i])))
+            product_reviews = row['product_reviews'][i]
+
+            if len(product_reviews) > 5:
+                import random
+                random.seed(42)
+                product_reviews = random.sample(product_reviews, 5)
+
+            input_text = base_prompt.format(product_name=product_name, product_reviews=product_reviews,
+                                            hist_vote_written=hist_vote_written)
+            output_text = output_template.format(user_profiles=format_profile(row['s3_user_profiles'][i]),
+                                                 helpful_kps="\n".join(
+                                                     ["- " + kp for i, kp in enumerate(row['s4_helpful_kps_filtered'][i])]),
+                                                 personalized_summaries=row['s5_annotated_personalized_summaries'][i])
+
+            messages = [
+                {"role": "user", "content": input_text},
+                {"role": "assistant", "content": output_text}
+            ]
+            # include assistant text (SFT target). No generation prompt for SFT.
+            text = tokenizer.apply_chat_template(
+                messages, tokenize=False, add_generation_prompt=False
+            )
+            texts.append(text)
+        return texts
+    return format_chat
 
 def train():
     parser = transformers.HfArgumentParser(
@@ -193,10 +239,21 @@ def train():
 
     df = pd.read_pickle(data_path)
     train = Dataset.from_pandas(df)
+
+    base_prompt = get_prompt("helpfulsumm_cot_helpful_pos")
+    output_template = """# User Profile:
+{user_profiles}
+# Helpful Key Points:
+{helpful_kps}
+# Personalized Summary:
+{personalized_summaries}"""
+    format_chat = make_format_chat(tokenizer, base_prompt, output_template)
+
     trainer = SFTTrainer(
         model=model, tokenizer=tokenizer, args=training_args,
         train_dataset=train,
-        dataset_text_field='train_text',
+        formatting_func=format_chat,
+        # dataset_text_field='train_text',
         max_seq_length=training_args.model_max_length,
         peft_config=lora_config
     )

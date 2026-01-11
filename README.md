@@ -14,7 +14,7 @@ votes on reviews to better model user interests and ground the generation of per
 ## Installation
 Our model was tested under the following dependencies
 - python 3 (tested with 3.9)
-- transformers (tested with 4.50.0)
+- transformers (tested with 4.44.2)
 - trl (tested with 0.8.0)
 
 We recommend installing using conda and GPU for reasonable runtime. The following will install all dependencies, referenced from Atlas:

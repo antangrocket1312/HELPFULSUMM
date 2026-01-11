@@ -6,7 +6,7 @@ torchrun --nproc_per_node=1 --master_port=9778 train/stage_1_sft.py \
     --data_path ./data/sft_train/train.pkl \
     --bf16 True \
     --fp16 False \
-    --output_dir ./models/stage_1_helpfulsumm_ft \
+    --output_dir ./models/stage_1_helpfulsumm_ft_2 \
     --num_train_epochs 2 \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 1 \
