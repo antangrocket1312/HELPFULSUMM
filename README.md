@@ -35,6 +35,9 @@ cd ../bleurt
 pip install .
 ```
 
+For computational feasibility, HELPFULSUMM was trained on a 4-bit GPTQ-quantized version of LLM as backbone.
+For GPTQ 4bit inference, please install [GPTQ-for-LLaMa](https://github.com/qwopqwop200/GPTQ-for-LLaMa), following installation instruction from [FastChat docs](https://github.com/lm-sys/FastChat/blob/main/docs/gptq.md).
+
 ## The HELPFULSUMM Model
 We proposed HELPFULSUMM, a reinforcement learning-based model that utilizes user historical helpfulness votes to align with user preference in both Knowledge Consistency and Persona Consistency.
 HELPFULSUMM is trained in two stages following the standard RLHF training paradigm.
