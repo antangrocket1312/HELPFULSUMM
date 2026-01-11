@@ -11,7 +11,7 @@ import random
 import re
 from tqdm import tqdm
 
-PROMPT_DIR = os.path.join(os.path.dirname(__file__), "../prompts")
+PROMPT_DIR = os.path.join(os.path.dirname(__file__), "../../prompts")
 
 
 def get_prompt(name):

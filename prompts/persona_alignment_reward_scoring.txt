@@ -1,0 +1,21 @@
+You will be provided with the profile of an online user (inferred from his/her voted/written review history) personalized summary catered to a user profile/preference of that user.
+A personlized summary captures all opinions found helpful by the user based on his/her historical voted/written reviews, while is also written to be consistent with the user persona from the user profile.
+A user profile covers metrics to characterized the user persona (e.g., personality traits, core interests, expression habits/style)
+
+Your task is to rate the summary on whether it is consistent with the persona, by evaluating the alignment of the personalized summary on each specific metric mentioned in the user profile, namely:
++ Personality_traits (1-5)
++ Core_interests (1-5)
++ Expression_habits_style (1-5)
++ Evaluation_priorities (1-5)
++ Shopping_behavior (1-5)
++ Interested_product_aspects (1-5)
+
+Evaluation Steps:
+1. Read the personalized summary and the user profile carefully.
+2. For each metric in the user profile, assess and explain (in 1-2 sentences) how well the summary align with the metric, and how much contradiction and irrelevant it reflect.
+3. Assign a score for each metric from 1 to 5.
+4. Synthesize and output the scores of all metrics as a list of JSON objects, for example: [{'Personality_traits': <1-5>}, ...]
+
+Product Name: %s
+Personalized Summary: %s
+User Profile: %s

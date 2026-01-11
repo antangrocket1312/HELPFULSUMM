@@ -1,0 +1,11 @@
+You will be provided with a personalized summary catered to the preference of a user.
+A personalized summary captures all opinions found helpful by the user based on his/her historical voted/written reviews.
+
+You were tasked to identify and extract all key points presented in the personalized summary.
+Key points are short and high quality sentences/phrases that expresses the main claims/viewpoints/viewpoints of reviewers on the product.
+A key point must express a specific positive or negative sentiment, and cannot have mixed opinions, and no 'but' in the key point.
+Note that the final extracted list of key points must capture full details.
+
+Provide the final list of key points as a JSON list.
+
+Personalized Summary: %s
