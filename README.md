@@ -126,13 +126,14 @@ sh run_inference.sh
 ```
 **IMPORTANT**: Please provide your API key to OpenAI via `<YOUR-API-KEY>` in above command, as the inference will utilize OpenAI's LLMs to extract KPs, i.e., opinions, from the generated summary. 
 
-
 To customize the inference setting, please access the file [`run_inference.sh`](run_inference.sh) and adjust the following arguments:
 - `policy_base_model`: the base model of LLMs for inference
 - `policy_model_path`: the trained checkpoint (e.g., `HelpfulSumm-RL`) of LLMs
 - `inference_data_path`: path to the test data used for inference
 - `summary_output_dir`: path to save the generated summary
 - `kp_extraction_output_dir`: path to save the KPs extracted from the generated summary
+
+The model inference can be also performed with [`train/stage_2_rl.ipynb`](train/stage_2_rl.ipynb) notebook
 
 ## Evaluation
 Codes to reproduce the experiments are in the [`/evaluation`](evaluation) directory
