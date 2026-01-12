@@ -66,9 +66,9 @@ HELPFULSUMM is trained in two stages following the standard RLHF training paradi
 [//]: # (  - **Persona Alignment Reward:** Use an LLM to infer the user profile from historical user-voted reviews and score the alignment of the summary to each profile's characteristic accordingly)
 
 ### Stage 1: Supervised Finetuning
-We first obtain a base summarizer (**HelpfulSumm-FT**) by instruction-finetuning an LLM to equip it with the capability to perform the POS task in end-to-end manner.
+We first obtain a base summarizer (`HelpfulSumm-FT`) by instruction-finetuning an LLM to equip it with the capability to perform the POS task in end-to-end manner.
 
-To train HelpfulSumm-FT with `Llama-3.1-8B-Instruct` as backbone default hyperparameters and settings mentioned in the paper, run the following command:
+To train `HelpfulSumm-FT` with `Llama-3.1-8B-Instruct` as backbone default hyperparameters and settings mentioned in the paper, run the following command:
 
 ```
 sh run_stage_1_sft.sh
@@ -84,9 +84,14 @@ To customize the training setting, please access the file [`run_stage_1_sft.sh`]
 The trained summarizer is saved under [`models/stage_1_helpfulsumm_ft`](models/stage_1_helpfulsumm_ft)
 
 ### Stage 2: Reinforcement Learning
-We further optimize HelpfulSumm-FT via reinforcement learning of the generated summary output using 2 reward models:
+We further optimize `HelpfulSumm-FT` via reinforcement learning of the generated summary output using 2 reward models. The RL-optimized model is referred to as `HelpfulSumm-RL`:
 - **Helpful Opinion Reward:** Use a fine-tuned DeBERTa model to estimate user helpfulness scores (0-5), i.e., averaged votes, on opinions captured in the summary based on historical user-voted reviews 
 - **Persona Alignment Reward:** Use an LLM to infer the user profile from historical user-voted reviews and score the alignment of the summary towards each of the six profile characteristics (e.g., personality traits) accordingly
+
+To train `HelpfulSumm-RL` with `Llama-3.1-8B-Instruct` as backbone default hyperparameters and settings mentioned in the paper, run the following command:
+```
+sh run_stage_2_rl.sh
+```
 
 ![HelpfulSumm_Model](diagram/HelpfulSumm_RL_Model.png)
 
