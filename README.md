@@ -93,7 +93,7 @@ To train `HelpfulSumm-RL` with `Llama-3.1-8B-Instruct` as backbone default hyper
 export OPENAI_API_KEY="<YOUR-API-KEY>"
 sh run_stage_2_rl.sh
 ```
-**IMPORTANT**: Please provide your API key to OpenAI via `<YOUR-API-KEY>` in above command, as the training will utilize OpenAI's LLMs to extract KPs, i.e., opinions, from the generated as well as scoring persona alignment reward. 
+**IMPORTANT**: Please provide your API key to OpenAI via `<YOUR-API-KEY>` in above command, as the training will utilize OpenAI's LLMs to extract KPs, i.e., opinions, from the generated as well as scoring Persona Alignment reward. 
 
 To customize the training setting, please access the file [`run_stage_2_rl.sh`](run_stage_2_rl.sh) and adjust the following arguments:
 - `policy_base_model`: the backbone LLM of `HelpfulSumm-FT` base summarizer for RL training at this stage
@@ -117,6 +117,9 @@ Model checkpoint can be downloaded from this [Google Drive link](https://drive.g
 Please download the file and unzip the ```/models``` directory into the main working directory.
 
 ### Inference
+
+## Evaluation
+Codes to reproduce the experiments are in the [evaluation](./evaluation) directory
 
 ## The CiaoHelpful Dataset
 We proposed CiaoHelpful, a new dataset specialized for training and evaluation of end-to-end models for helpful personalized opinion summarization.
