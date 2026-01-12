@@ -10,10 +10,10 @@ from pathlib import Path
 import os
 
 bluert_file = Path(os.path.join(os.path.dirname(os.path.abspath(__file__)), "BLEURT-20.zip"))
-if not bluert_file.exists():
+bluert_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "BLEURT-20")
+if not bluert_file.exists() and not os.path.isdir(bluert_folder):
     subprocess.run(['wget', '-O', bluert_file, 'https://storage.googleapis.com/bleurt-oss-21/BLEURT-20.zip'])
 
-bluert_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "BLEURT-20")
 if not os.path.isdir(bluert_folder):
     subprocess.run(['unzip', bluert_folder, '-d', Path(bluert_folder).parent.absolute()])
 
