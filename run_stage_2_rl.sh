@@ -8,8 +8,8 @@ torchrun --nproc_per_node=1 --master_port=9778 train/stage_2_rl.py \
     --lora_alpha 16 \
     --lora_dropout 0.05 \
     --data_path ./data/rl_train/train.pkl \
-    --output_dir ./models/stage_2_helpfulsumm_rl_2 \
-    --openai_api_key <YOUR-API-KEY> \
+    --output_dir ./models/stage_2_helpfulsumm_rl \
+    --openai_api_key $OPENAI_API_KEY \
     --batch_size 1 \
     --num_epochs 1 \
     --learning_rate 2e-7 \

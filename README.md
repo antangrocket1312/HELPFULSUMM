@@ -78,7 +78,7 @@ sh run_stage_1_sft.sh
 
 To customize the training setting, please access the file [`run_stage_1_sft.sh`](run_stage_1_sft.sh) and adjust the following arguments:
 - `model_name_or_path`: the backbone LLM of HELPFULSUMM instruction fine-tuned for the POS task
-- `data_path`: path to training data
+- `data_path`: path to SFT training data
 - `model_max_length`: max sequence length for training, increase if GPU memory allows
 
 The trained summarizer is saved under [`models/stage_1_helpfulsumm_ft`](models/stage_1_helpfulsumm_ft)
@@ -90,8 +90,21 @@ We further optimize `HelpfulSumm-FT` via reinforcement learning of the generated
 
 To train `HelpfulSumm-RL` with `Llama-3.1-8B-Instruct` as backbone default hyperparameters and settings mentioned in the paper, run the following command:
 ```
+export OPENAI_API_KEY="<YOUR-API-KEY>"
 sh run_stage_2_rl.sh
 ```
+**IMPORTANT**: Please provide your API key to OpenAI via `<YOUR-API-KEY>` in above command, as the training will utilize OpenAI's LLMs to extract KPs, i.e., opinions, from the generated as well as scoring persona alignment reward. 
+
+To customize the training setting, please access the file [`run_stage_2_rl.sh`](run_stage_2_rl.sh) and adjust the following arguments:
+- `policy_base_model`: the backbone LLM of `HelpfulSumm-FT` base summarizer for RL training at this stage
+- `policy_model_path`: the checkpoint of `HelpfulSumm-FT` base summarizer for RL training
+- `helpful_opinion_reward_base_model`: the encoder base model used in *Helpful Opinion Reward*
+- `helpful_opinion_reward_model_path`: the fine-tuned BERT encoder for predicting the helpfulness in the generated summary against user reviews history in Helpful Opinion Reward
+- `persona_alignment_reward_model`: the LLM (from OpenAI) used for scoring the persona alignment of generated summary with user profile in *Persona Alignment Reward*
+- `data_path`: path to RL training data
+- `model_max_length`: max sequence length for training, increase if GPU memory allows
+
+The model can also be trained using the [`train/stage_2_rl.ipynb`](train/stage_2_rl.ipynb) notebook 
 
 ![HelpfulSumm_Model](diagram/HelpfulSumm_RL_Model.png)
 
