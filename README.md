@@ -102,7 +102,6 @@ To customize the training setting, please access the file [`run_stage_2_rl.sh`](
 - `helpful_opinion_reward_model_path`: the fine-tuned BERT encoder for predicting the helpfulness in the generated summary against user reviews history in Helpful Opinion Reward
 - `persona_alignment_reward_model`: the LLM (from OpenAI) used for scoring the persona alignment of generated summary with user profile in *Persona Alignment Reward*
 - `data_path`: path to RL training data
-- `model_max_length`: max sequence length for training, increase if GPU memory allows
 
 The model can also be trained using the [`train/stage_2_rl.ipynb`](train/stage_2_rl.ipynb) notebook 
 
