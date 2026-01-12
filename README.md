@@ -119,6 +119,20 @@ Model checkpoint can be downloaded from this [Google Drive link](https://drive.g
 Please download the file and unzip the [`/models`](models) directory into the main working directory.
 
 ### Inference
+To perform inference of `HELPFULSUMM-RL` on the [`test`](data/test) set of CiaoHelpful with default hyperparameters and settings mentioned in the paper, run the following command:
+```
+export OPENAI_API_KEY="<YOUR-API-KEY>"
+sh run_inference.sh
+```
+**IMPORTANT**: Please provide your API key to OpenAI via `<YOUR-API-KEY>` in above command, as the inference will utilize OpenAI's LLMs to extract KPs, i.e., opinions, from the generated summary. 
+
+
+To customize the inference setting, please access the file [`run_inference.sh`](run_inference.sh) and adjust the following arguments:
+- `policy_base_model`: the base model of LLMs for inference
+- `policy_model_path`: the trained checkpoint (e.g., `HelpfulSumm-RL`) of LLMs
+- `inference_data_path`: path to the test data used for inference
+- `summary_output_dir`: path to save the generated summary
+- `kp_extraction_output_dir`: path to save the KPs extracted from the generated summary
 
 ## Evaluation
 Codes to reproduce the experiments are in the [`/evaluation`](evaluation) directory
