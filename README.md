@@ -49,6 +49,8 @@ pip install auto-gptq
 We proposed HELPFULSUMM, a reinforcement learning-based model that utilizes user historical helpfulness votes to align with user preference in both Knowledge Consistency and Persona Consistency.
 HELPFULSUMM is trained in two stages following the standard RLHF training paradigm.
 
+All training codes are in the [`/train`](train) directory
+
 [//]: # (- **Stage 1: Supervised Fine-tuning**: First obtain a base summarizer **HelpfulSumm-FT** )
 
 [//]: # (by instruction-finetuning an LLM to equip it with the capability to perform the POS task in end-to-end manner.)
@@ -107,19 +109,19 @@ The model can also be trained using the [`train/stage_2_rl.ipynb`](train/stage_2
 
 ![HelpfulSumm_Model](diagram/HelpfulSumm_RL_Model.png)
 
-All prompts are located under [```/prompts```](/prompts)
+All prompts are located under the [```/prompts```](prompts) directory.
 
 [//]: # (#### Fine-tuning a DeBERTa model for Helpful Opinion Reward)
 
 ### Model Checkpoint
 For ease of reproducibility, we provided the trained model checkpoints of HELPFULSUMM, using quantized version (4 bit, group size 128) of `Llama-3.1-8B-Instruct` (due to computational limitation for training).  
 Model checkpoint can be downloaded from this [Google Drive link](https://drive.google.com/file/d/12dZLHgrChs9rHcog8qpr0LntlxicTrmt/view?usp=sharing).
-Please download the file and unzip the ```/models``` directory into the main working directory.
+Please download the file and unzip the [`/models`](models) directory into the main working directory.
 
 ### Inference
 
 ## Evaluation
-Codes to reproduce the experiments are in the [evaluation](./evaluation) directory
+Codes to reproduce the experiments are in the [`/evaluation`](evaluation) directory
 
 ## The CiaoHelpful Dataset
 We proposed CiaoHelpful, a new dataset specialized for training and evaluation of end-to-end models for helpful personalized opinion summarization.
