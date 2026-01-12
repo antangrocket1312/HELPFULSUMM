@@ -172,15 +172,6 @@ class TrainingArguments:
     save_total_limit: int = 10
     seed: int = 201
     debug_mode: bool = True
-    # cache_dir: typing.Optional[str] = field(default=None)
-    # optim: str = field(default="adamw_torch")
-    # model_max_length: int = field(
-    #     default=512,
-    #     metadata={
-    #         "help": "Maximum sequence length. Sequences will be right padded (and possibly truncated)."
-    #     },
-    # )
-    # flash_attn: bool = False
 
 
 @dataclass
@@ -197,31 +188,6 @@ class LoraArguments:
 
 
 MAX_LEN = 512
-
-# # model/data params
-# base_model: str = "",  # the only required argument
-# data_path: str = "",
-# output_dir: str = "./saved/output",
-# # training hyperparams
-# batch_size: int = 128,
-# micro_batch_size: int = 4,
-# num_epochs: int = 3,
-# learning_rate: float = 3e-4,
-# cutoff_len: int = 256,
-# val_set_size: int = 2000,
-# # lora hyperparams
-# lora_r: int = 8,
-# lora_alpha: int = 16,
-# lora_dropout: float = 0.05,
-# lora_target_modules: List[str] = ["q_proj", "v_proj"],
-# train_on_inputs: bool = True,  # if False, masks out inputs in loss
-# add_eos_token: bool = False,
-# eval_steps = 200,
-# save_steps = 200,
-# seed = 62,
-# debug_mode = False,
-# save_total_limit = 2,
-
 
 def train():
     parser = transformers.HfArgumentParser(
@@ -246,9 +212,6 @@ def train():
     policy_base_model = training_args.policy_base_model
     policy_source_path = training_args.policy_model_path
     output_dir = training_args.output_dir
-    # policy_base_model = "hugging-quants/Meta-Llama-3.1-8B-Instruct-GPTQ-INT4"
-    # policy_source_path = '../models/stage_1_helpfulsumm_ft/checkpoint-800'
-    # output_dir = f'../models/stage_2_helpfulsumm_rl_2/'
 
     os.makedirs(output_dir, exist_ok=True)
     set_seed(seed=training_args.seed)
@@ -347,7 +310,6 @@ def train():
     }
 
     # Helpful Opinion Reward Model
-    model = "gpt-4.1"
     base_prompt = get_prompt("summary_kp_extraction")
     helpful_opinion_base_model = training_args.helpful_opinion_reward_base_model  # swap to "bert-base-uncased" if you prefer BERT
     helpful_opinion_reward_model = HelpfulOpinionRegressor(helpful_opinion_base_model)
