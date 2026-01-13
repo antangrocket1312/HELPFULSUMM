@@ -328,7 +328,7 @@ def train():
     epochs = training_args.num_epochs
     print("TOTAL EPOCHS: ", training_args.num_epochs)
     step_i = 0
-    root_path = output_dir + "rl_output/"
+    root_path = output_dir + "/rl_output/"
 
     responses = []
     for epoch in tqdm(range(epochs), "epoch:", ncols=100):
