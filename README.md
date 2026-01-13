@@ -138,6 +138,15 @@ The model inference can be also performed with [`train/stage_2_rl.ipynb`](train/
 ## Evaluation
 Codes to reproduce the experiments are in the [`/evaluation`](evaluation) directory
 
+### Summary Textual Quality Evaluation
+* [`Summary_Textual_Quality_Evaluation.ipynb`](./evaluation/Summary_Textual_Quality_Evaluation.ipynb): Perform lexical and semantic comparison of generated personalized summary with gold annotated personalized summary from our CiaoHelpful dataset (Stage 5 of CiaoHelpful curation)
+* [`KP_Textual_Quality_Evaluation_sP_sR_sF1.ipynb`](./evaluation/KP_Textual_Quality_Evaluation_sP_sR_sF1.ipynb): Perform sP/sR/sF1 set-level evaluation of individual generated KPs with reference helpful KPs from our CiaoHelpful dataset (Stage 4 of CiaoHelpful curation).
+
+### Summary Helpfulness Evaluation
+* [`SHKP_Helpfulness_Evaluation.ipynb`](evaluation/SHKP_Helpfulness_Evaluation.ipynb): Perform **Summary Helpful KP Proportion** evaluation, which computes the proportion of helpful key points (KPs), i.e., opinions, in the generated summary that match reference helpful KPs from our CiaoHelpful dataset (Stage 4 of CiaoHelpful curation).
+* [`SHS_Helpfulness_Evaluation.ipynb`](evaluation/SHS_Helpfulness_Evaluation.ipynb): Perform **Summary Helpfulness Score** evaluation, measures the averaged helpfulness score of KPs, i.e., opinions, in a summary. Specifically, for every opinion, we score its helpfulness using our fine-tuned DeBERTa model for **Helpful Opinion** reward
+
+
 ## The CiaoHelpful Dataset
 We proposed CiaoHelpful, a new dataset specialized for training and evaluation of end-to-end models for helpful personalized opinion summarization.
 CiaoHelpful annotates gold summary of product personalized for a user in 5 stages:
